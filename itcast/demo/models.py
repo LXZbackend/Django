@@ -5,8 +5,8 @@ class BookInfo(models.Model):
 	bittle = models.CharField(max_length=10)
 	bpub_date = models.DateTimeField()
 	def __str__(self):
-		return "%d"%self.pk
-	
+		return self.bittle.encode('utf-8')
+
 	
 
 
