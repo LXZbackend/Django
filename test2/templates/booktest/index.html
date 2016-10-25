@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>这是首页</title>
+</head>
+<body>
+{{maxdate}}
+<h2>书名</h2>
+<ul>
+		{%for book in list%}
+		<li>
+			{{book.btitle}}
+		</li>
+		{%endfor%}
+
+</ul>
+
+	
+</body>
+</html>

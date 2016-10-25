@@ -14,8 +14,13 @@ def index(request):
 	# 第一中方法 通过三部  先加载模板就是把模板引进来  context 是传的内容
 	 # 然后再通过 返回 返回 渲染模板
 	# 加载模板
-	# template = loader.get_template('demo/index.html')
+	# 模板里面的占位符{{}}  在通过传入的参数改变
+	# template = loader.get_template('demo/index.html') #加载模板
+
+	# 往模板里传入字典类型的参数
 	# context = RequestContext(request,{"list":booklist})
+
+	# render 是渲染的意思
 	# return HttpResponse(template.render(context))
 
 	# 第二种方法 封装成一个方法 其实内部还是执行三句话

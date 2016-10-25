@@ -12,7 +12,10 @@ def index(request):
 	mylist = BookInfo.objects.all()
 	template = loader.get_template("booktest/index.html")
 	context = RequestContext(request,{"booklist":mylist})
+
+
 	return HttpResponse(template.render(context))
+
 
 
 def detail(request,id):
