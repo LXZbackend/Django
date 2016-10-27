@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="/static/booktest/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 这是页面打开的时候就行异步 请求 所以不需要任何时间
+			$.get('/pro/',function(data){
+				// 这里的get 是ajax 异步的 等页面一加载的时间就执行这个操作，下面的两个方法是需要又时间操作才进行的异步加载
+				pro = $("#pro")//这是获取节点，为下面的添加子节点操作做准备
+				//这是js中循环操作  第一个参数是迭代的对象，后面的方法是回调函数,回调函数中第一个参数index下标，第二个item是值
+				$.each(data.list,function(index,item){
+					//append是添加节点操作
+					pro.append('<option value='+item.id+'>'+item.title+'</option>')
+					// pro.append('<option value="'+item.id+'">'+item.title+'</option>')
+
+				});
+			});
+			// 这时候当你选择省级的时候需要根据省级的id 从后台获取到对应的值 并返回 在拿到这时候父节点 添加字节的就行
+			$('#pro').change(function(){
+
+				// 一旦改变 就行异步获取
+				$.get('/pro'+$(this).val()+'/',function(data){
+					city = $("#city")
+					city.empty().append('<option>请选择市</option>')
+					// city.append
+					$.each(data.list,function(index,item){
+					
+						city.append('<option value='+item.id+'>'+item.title+'</option>')
+
+					});
+
+				});
+			});
+
+			$('#city').change(function(){
+				$.get('/pro'+$(this).val()+'/',function(data){
+					dis = $('#dis')
+					dis.empty().append('<option>请选择区</option>')
+					$.each(data.list,function(index,item){
+						dis.append('<option value="'+item.id+'">'+item.title+'</option>')
+
+
+					});
+
+
+
+				});
+			});
+
+
+
+
+		});
+	</script>
+</head>
+<body>
+<select id='pro'>
+	<option>请选择省</option>
+</select>
+<select id='city'>
+	<option>请选择市</option>
+</select>
+<select id='dis'>
+	<option>请选择区</option>
+</select>
+</body>
+</html>
